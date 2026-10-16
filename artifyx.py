@@ -124,9 +124,13 @@ def good_bye() -> None:
 
 def main() -> None:
     while True:
-        prompt = console.input(
-            f"[{GOLD}]◆[/] [bold][{ACCENT}]Image Detail[/][/] [{DIM}]›[/] "
-        ).strip()
+        try:
+            prompt = console.input(
+                f"[{GOLD}]◆[/] [bold][{ACCENT}]Image Detail[/][/] [{DIM}]›[/] "
+            ).strip()
+        except (EOFError, KeyboardInterrupt):
+            good_bye()
+            sys.exit(0)
         if not prompt:
             console.print(
                 f"  [{WARN}]◇[/] [{TEXT}]enter a description, or type "
@@ -177,9 +181,16 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    if not check_client():
-        sys.exit(1)
-    banner()
-    while True:
-        main()
-        console.rule(style=ACCENT, align="center")
+    from core.remote_control import RemoteControl
+
+    with RemoteControl(tool_id="artifyx"):
+        try:
+            if not check_client():
+                sys.exit(1)
+            banner()
+            while True:
+                main()
+                console.rule(style=ACCENT, align="center")
+        except KeyboardInterrupt:
+            good_bye()
+            sys.exit(0)
