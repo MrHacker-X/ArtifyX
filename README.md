@@ -1,82 +1,247 @@
-# ArtifyX
+<div align="center">
 
-<p align="center">
-<a href="https://instagram.com/0hacker.x0"><img title="Made in INDIA" src="https://img.shields.io/badge/Tool-ArtifyX-green.svg"></a>
-<a href="https://youtube.com/@Technolex"><img title="Version" src="https://img.shields.io/badge/Version-1.0-green.svg?style=flat-square"></a>
-<a href="https://youtube.com/@Technolex"><img title="Maintainence" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg"></a>
-</p>
+# ⃤ A R T I F Y X ⃤
 
-<p align="center">
-<a href="https://github.com/MrHacker-X"><img title="Github" src="https://img.shields.io/badge/MrHacker-X-brightgreen?style=for-the-badge&logo=github"></a>
-<a href="https://youtube.com/@Technolex"><img title="YouTube" src="https://img.shields.io/badge/YouTube-Technolex-red?style=for-the-badge&logo=Youtube"></a>
-</p>
-<p align="center">
-<a href="https://github.com/MrHacker-X"><img title="Language" src="https://img.shields.io/badge/Made%20with-Python-1f425f.svg?v=103"></a>
-<a href="https://github.com/MrHacker-X"><img title="Followers" src="https://img.shields.io/github/followers/MrHacker-X?color=blue&style=flat-square"></a>
-<a href="https://github.com/MrHacker-X"><img title="Stars" src="https://img.shields.io/github/stars/MrHacker-X/ArtifyX?color=red&style=flat-square"></a>
-<a href="https://github.com/MrHacker-X"><img title="Forks" src="https://img.shields.io/github/forks/MrHacker-X/ArtifyX?color=red&style=flat-square"></a>
+### *Type words, get art - five AI-generated images from one prompt, right in your terminal.*
 
+![Python](https://img.shields.io/badge/Python-3.8%2B-3776AB?style=flat-square&logo=python&logoColor=white)
+![OpenAI](https://img.shields.io/badge/AI-OpenAI%20Images-412991?style=flat-square&logo=openai&logoColor=white)
+![Platform](https://img.shields.io/badge/Platform-Termux%20%7C%20Linux%20%7C%20macOS-38;5;150?style=flat-square)
+![Images](https://img.shields.io/badge/Prompts%20to%205%20images-38;5;245?style=flat-square)
+![Stars](https://img.shields.io/github/stars/MrHacker-X/ArtifyX?style=flat-square&color=orange)
+![Forks](https://img.shields.io/github/forks/MrHacker-X/ArtifyX?style=flat-square&color=cyan)
 
-## Introduction:
+</div>
 
-+ ArtifyX is a powerful bot that turns your text into beautiful visual art in just a few clicks. With the power of artificial intelligence, ArtifyX can generate stunning posters, social media graphics, logos, and more from any text input. Customize your art with different styles, colors, and effects to bring your ideas to life. With a user-friendly interface, you can easily create and share your artwork with the world. ArtifyX is perfect for designers, artists, marketers, and anyone who wants to express their creativity in a unique way. Try it out today and discover the endless possibilities of art creation with ArtifyX!
+---
 
+## 📋 Table of Contents
 
-## Requirements
+- [🎯 Why ArtifyX?](#-why-artifyx)
+- [🧭 What It Does](#-what-it-does)
+- [🚀 Quick Start](#-quick-start)
+- [📦 Installation](#-installation)
+- [✨ Features](#-features)
+- [⌨️ Usage](#%EF%B8%8F-usage)
+- [⚙️ Configuration](#%EF%B8%8F-configuration)
+- [🧰 Tech Stack](#-tech-stack)
+- [⚠️ Disclaimer](#%EF%B8%8F-disclaimer)
+- [🤝 Contributing](#-contributing)
+- [📜 License](#-license)
+- [👨‍💻 Developer](#-developer)
 
-> Python3 [package] <br>
-> openai [module]<br>
-> requests [module]<br>
-> OpenAI API Key
+---
 
-## Tested On
+## 🎯 Why ArtifyX?
 
-+ Termux
+> Text-to-image tools either want you to click through a web app or run a heavyweight framework. **ArtifyX is one prompt loop in your terminal**: describe what you want, and five images land in your phone's storage.
+>
+> **v2.0 modernizes the engine.** The original was wired to the legacy OpenAI SDK and a hand-rolled HTTP call that broke when the images API moved. Everything is now upgraded: OpenAI SDK v1+, DALL·E model choice, live config validation, and an output path that works outside Termux instead of assuming `/sdcard`. Setup now supports every major Linux family - not just Termux - and verifies each dependency before claiming success.
 
-## Available For
+---
 
-+ Termux
+## 🧭 What It Does
 
-## Installation
+| # | Step | What happens |
+|---|------|-------------|
+| 1️⃣ | **Prompt** | You type an image description in the terminal |
+| 2️⃣ | **Generate** | ArtifyX calls the OpenAI images API (`dall-e-2` / `dall-e-3`) |
+| 3️⃣ | **Save** | Up to 10 images are decoded and saved as timestamped PNG files |
 
-> For Termux User
+**What this tool is NOT:** it is **not** a batch-generation farm, and **not** a way around OpenAI's usage policies or content rules - prompts that violate them will be refused by the API.
 
-+ ```apt update -y```
-+ ```apt upgrade -y```
-+ ```apt install git -y```
-+ ```termux-setup-storage```
-+ ```git clone https://github.com/MrHacker-X/ArtifyX.git/```
-+ ```cd ArtifyX```
-+ ```chmod +x *```
-+ ```bash setup.sh```
+---
 
-+ Installation is completed, now you have to configure OpenAI API key.
+## 🚀 Quick Start
 
-+ `nano config.py`
+```bash
+git clone https://github.com/MrHacker-X/ArtifyX.git
+cd ArtifyX
+./setup.sh                     # installs deps (Termux / apt / dnf / pacman / apk)
+nano config.py                 # or: export OPENAI_API_KEY="sk-..."
+python3 artifyx.py               # prompt loop starts
+```
 
-+ Now here put your OpenAI API key between two Quotation mark. After putting save the file by ` ctrl + s ` and close the file by ` ctrl + x ` and done you're ready to use ArtifyX In Your Termux. To run the script use following command.
+<details>
+<summary><b>🔑 Where do I get an API key?</b></summary>
 
-+ ```python artifyx.py```
+Create one at [platform.openai.com/api-keys](https://platform.openai.com/api-keys) - every generated image is billed to that key, so keep it private.
 
+</details>
 
-## Note
-+ Generated Image will save into your internal storage and path is `/sdcard/ArtifyX`
-+ To exit from tool just type `exit` or `bye` and hit ENTER. You will get exit from prompt.
+---
 
-## Screenshot
+## 📦 Installation
 
-![photo](https://i.ibb.co/KLTYcSR/Screenshot-2023-05-03-01-49-55-990-com-termux.jpg)
+### Termux (Android)
 
-![photo](https://i.ibb.co/80NTyw3/Screenshot-2023-05-03-01-51-44-735-com-termux.jpg)
+```bash
+apt update -y && apt install git -y
+git clone https://github.com/MrHacker-X/ArtifyX.git
+cd ArtifyX
+chmod +x setup.sh
+./setup.sh
+```
 
-![photo](https://i.ibb.co/F8vTqnc/Screenshot-2023-05-03-01-52-13-218-com-termux.jpg)
+### Desktop Linux / macOS
 
+```bash
+git clone https://github.com/MrHacker-X/ArtifyX.git
+cd ArtifyX
+./setup.sh          # or: pip install -r requirements.txt
+```
 
-## Our another Repository
+### Supported Systems
 
-+ You can check it out
-<p align="center"><a href="https://github.com/MrHacker-X/BruteX.git/"><img title="BruteX" src="https://github-readme-stats.vercel.app/api/pin/?username=MrHacker-X&repo=BruteX&theme=dark"></a>
-<p align="center"><a href="https://github.com/MrHacker-X/TraceX.git/"><img title="TraceX" src="https://github-readme-stats.vercel.app/api/pin/?username=MrHacker-X&repo=TraceX&theme=dark"></a>
-<p align="center"><a href="https://github.com/MrHacker-X/KalnemiX.git/"><img title="KalnemiX" src="https://github-readme-stats.vercel.app/api/pin/?username=MrHacker-X&repo=KalnemiX&theme=dark"></a>
-<p align="center"><a href="https://github.com/MrHacker-X/InfoGX.git/"><img title="InfoGX" src="https://github-readme-stats.vercel.app/api/pin/?username=MrHacker-X&repo=InfoGX&theme=dark"></a>
-<p align="center"><a href="https://github.com/MrHacker-X/ScannerX.git/"><img title="ScannerX" src="https://github-readme-stats.vercel.app/api/pin/?username=MrHacker-X&repo=ScannerX&theme=dark"></a>
+| OS | Status | Notes |
+|----|--------|-------|
+| 📱 Termux (Android) | ✅ Fully supported | Auto-detected; storage permission requested |
+| 🐧 Debian / Ubuntu / Kali | ✅ Fully supported | `apt` detected automatically |
+| 🐧 Fedora / RHEL | ✅ Fully supported | `dnf` detected automatically |
+| 🐧 Arch / Manjaro | ✅ Fully supported | `pacman` detected automatically |
+| 🐧 Alpine | ✅ Fully supported | `apk` detected automatically |
+| 🍎 macOS | ✅ Fully supported | pip-only path, needs Python preinstalled |
+
+> 💡 The setup script **verifies every dependency** at the end and tells you exactly what's missing - it will never print "installed successfully" when it isn't.
+
+---
+
+## ✨ Features
+
+| | Feature | Description |
+|---|---------|-------------|
+| 🎨 | **Model choice** | `dall-e-2` (cheap, up to 10 images) or `dall-e-3` (richer, single image) |
+| ✨ | **Premium color theme** | Custom violet-gold terminal palette with elegant glyphs and a live generation spinner — auto-degrades from truecolor to 256 to basic colors on older terminals |
+| 🖼️ | **Prompt → 5 images** | One prompt, multiple PNGs per run (count configurable 1-10) |
+| 🛡️ | **Per-loop error containment** | A failed API call reports and returns to the prompt - the tool never crashes out |
+| 🧪 | **Model/size validation** | Invalid `MODEL`/`IMAGE_SIZE` combos fail at startup with the allowed values listed |
+| 📱 | **Portable output** | Saves to `/sdcard/ArtifyX` on Termux, `~/ArtifyX` on desktop, fully overridable |
+| 🔑 | **Fail-fast auth** | Missing API key → one clear line at startup, no stack trace |
+| 🧰 | **Cross-platform setup** | One script detects Termux + 4 Linux package managers, handles PEP 668, verifies imports |
+| 🪶 | **Minimal dependencies** | 2 packages: `openai`, `rich` |
+
+<details>
+<summary><b>🔄 What changed from the original v1.x?</b></summary>
+
+| v1.x (old) | v2.0 (now) |
+|------------|------------|
+| Legacy openai 0.28 + hand-rolled `requests` POST | **openai SDK v1+** images API |
+| Silent HTTP errors, `raise ValueError` on any bad status | Real error messages with cause + fix hint |
+| Hard-coded `/sdcard/ArtifyX` (broke on desktop Linux) | Portable: `/sdcard/ArtifyX` on Termux, `~/ArtifyX` elsewhere, env-overridable |
+| Unused `text-davinci-003` variable | DALL·E model choice via config | 
+| `setup.sh` only worked in Termux | Works on Termux + apt/dnf/pacman/apk + pip-only platforms |
+| `pip install datetime` (a package that doesn't exist the way you'd think) | Removed - `datetime` is stdlib |
+| No requirements.txt | Added: `openai~=1.0`, `rich` |
+| 5 separate API calls per prompt | One call with `n=5`, images decoded from base64 |
+| Missing key → crash mid-run | Fail-fast validation at startup |
+
+</details>
+
+---
+
+## ⌨️ Usage
+
+Run the tool, type a prompt, get art:
+
+```bash
+python3 artifyx.py
+```
+
+| Input | Result |
+|-------|--------|
+| any text | e.g. `a fox astronaut painting a mountain sunrise` → five PNG images saved |
+| `exit` or `bye` | Exits cleanly with a summary |
+| empty input | Re-prompts - nothing wasted |
+| a failed prompt | Error message, loop continues on the next prompt |
+
+Images are saved as `{timestamp}_{NN}.png` so simultaneous generations never overwrite each other.
+
+---
+
+## ⚙️ Configuration
+
+Everything lives in [`config.py`](config.py) - and every setting can be overridden from the shell:
+
+| Setting | Env var | Default | Description |
+|---------|---------|---------|-------------|
+| API key | `OPENAI_API_KEY` | *(required)* | Your OpenAI API key |
+| Model | `ARTIFYX_MODEL` | `dall-e-2` | `dall-e-2` or `dall-e-3` |
+| Images per prompt | `ARTIFYX_NUM_IMAGES` | `5` | 1-10 on dall-e-2; fixed at 1 on dall-e-3 |
+| Image size | `ARTIFYX_SIZE` | `512x512` | See allowed sizes per model in config.py |
+| Output folder | `ARTIFYX_OUTPUT_DIR` | auto | `/sdcard/ArtifyX` on Termux, `~/ArtifyX` on desktop |
+
+```bash
+# either edit config.py, or:
+export OPENAI_API_KEY="sk-..."
+export ARTIFYX_MODEL="dall-e-3"
+export ARTIFYX_SIZE="1024x1024"
+```
+
+---
+
+## 🧰 Tech Stack
+
+| Layer | Technology |
+|-------|------------|
+| Language | Python 3.8+ |
+| AI | `openai` SDK v1+ — Images API (`b64_json` responses) |
+| Terminal UI | `rich` — custom violet/gold theme (truecolor, graceful degradation) |
+| Setup | POSIX bash with 5 environment detections |
+
+---
+
+## ⚠️ Disclaimer
+
+> ### Read this before using ArtifyX.
+>
+> 1. **You pay per image.** Every generation is billed to your OpenAI key. Five images per prompt add up quickly - keep the count sensible and your key private.
+> 2. **OpenAI's policies apply.** Your prompts must comply with OpenAI's [usage policies](https://openai.com/policies) and content policy - the API refuses violating prompts, and you are responsible for what you send.
+> 3. **Personal use.** ArtifyX is a personal creative tool, not a bulk-generation service.
+> 4. **No warranty.** Provided "as is", with no warranty of any kind. The author is **not liable** for any misuse, cost, or damage resulting from its use.
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome!
+
+```bash
+# 1. fork it
+# 2. create your branch
+git checkout -b feature/amazing-feature
+# 3. commit
+git commit -m "Add amazing feature"
+# 4. push
+git push origin feature/amazing-feature
+# 5. open a Pull Request
+```
+
+Ideas worth exploring: style presets (`--style cyberpunk`), a `--one-shot` CLI flag for scripts, transparent-webp output pairs, an optional prompt-enhancer before the image call.
+
+---
+
+## 📜 License
+
+ArtifyX is the original project by MrHacker-X - see the [`LICENSE`](https://github.com/MrHacker-X/ArtifyX) file in the upstream repository for details.
+
+---
+
+## 👨‍💻 Developer
+
+| | |
+|---|---|
+| **Dev** | MrHacker-X |
+| **GitHub** | [github.com/MrHacker-X](https://github.com/MrHacker-X) |
+| **Email** | [contact@vritrasec.com](mailto:contact@vritrasec.com) |
+| **Website** | [vritrasec.com](https://vritrasec.com) |
+| **Network** | [link.vritrasec.com](https://link.vritrasec.com) |
+
+---
+
+<div align="center">
+
+### ⭐ Star the repo if ArtifyX colored your ideas ⭐
+
+*Built by MrHacker-X - create art, credit artists.*
+
+</div>

@@ -1,0 +1,24 @@
+# --- Secrets: never commit your real API key --------------------------------
+# config.py is tracked only with its empty placeholder. Keep your real key
+# in .env / environment variables, or in config.py on your machine only.
+.env
+.env.*
+
+# --- Python ------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+build/
+dist/
+.eggs/
+
+# --- Virtual environments ----------------------------------------------------
+.venv/
+venv/
+env/
+ENV/
+
+# --- Generated art (default save location) ----------------------------------
+~/ArtifyX/
+ArtifyX_output/
